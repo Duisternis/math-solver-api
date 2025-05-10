@@ -26,6 +26,10 @@ app.add_middleware(
 class LatexInput(BaseModel):
     expression: str
 
+@app.get("/")
+async def root():
+    return JSONResponse(content={"message": "This is the backend for the Math Solver API."})
+
 @app.post("/predict/")
 async def get_latex(file: UploadFile = File(...)):
     contents = await file.read()
